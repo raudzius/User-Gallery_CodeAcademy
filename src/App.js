@@ -1,23 +1,36 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import UserForm from './components/UserForm';
+import UserGallery from './components/UserGallery';
 
 function App() {
+  const [users, setUsers] = useState([]);
+
+  const send = async (user) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    };
+
+    const res = await fetch('http://localhost:4000/createUser', options);
+    const data = await res.json();
+    setUsers(data.users);
+  };
+
+  const removeUser = async (index) => {
+    const res = await fetch('http://localhost:4000/remove/' + index);
+    const data = await res.json();
+
+    setUsers(data.users);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <UserForm send={send} />
+      <UserGallery users={users} removeUser={removeUser} />
     </div>
   );
 }
