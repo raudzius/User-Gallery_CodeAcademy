@@ -2,12 +2,20 @@
   display: flex;
 }
 
+.space-btw {
+  justify-content: space-between;
+}
+
 .flex-column {
   flex-direction: column;
 }
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.ml-20 {
+  margin-left: 20px;
 }
 
 .pl-20 {
@@ -72,4 +80,22 @@
 
 .card img {
   width: 100%;
+}
+
+.cart {
+  position: absolute;
+  left: 200px;
+  top: 100px;
+  width: 700px;
+  height: 500px;
+  background-color: #efefef;
+}
+
+.cart-item {
+  padding: 20px;
+  background-color: #efefef;
+}
+
+.cart-item img {
+  height: 100px;
 }
