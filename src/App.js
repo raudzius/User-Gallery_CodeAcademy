@@ -1,46 +1,26 @@
 import { useState } from 'react';
 import './App.css';
-import Cart from './components/Cart';
-import ProductForm from './components/ProductForm';
-import ProductGallery from './components/ProductGallery';
+import Chat from './components/Chat';
+import ChatMessageSend from './components/ChatMessageSend';
+import { post } from './plugins/http';
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [showCart, setShowCart] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [messages, setMessages] = useState([]);
 
-  const send = async (product) => {
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(product),
-    };
-
-    const res = await fetch('http://localhost:4000/addProduct', options);
-    const data = await res.json();
-    setProducts(data.products);
+  const sendMessage = async (msg) => {
+    const data = await post('addMessage', msg);
+    setMessages(data.messages);
   };
 
-  const removeProduct = async (index) => {
-    const res = await fetch('http://localhost:4000/remove/' + index);
-    const data = await res.json();
-
-    setProducts(data.products);
+  const replyMessage = async (msg) => {
+    const data = await post('reply', msg);
+    setMessages(data.messages);
   };
 
   return (
-    <div className="">
-      <button onClick={() => setShowCart(true)}>Show Cart</button>
-      <ProductForm send={send} />
-      <ProductGallery
-        products={products}
-        removeProduct={removeProduct}
-        cart={cart}
-        setCart={setCart}
-      />
-      {showCart && <Cart cart={cart} setShowCart={setShowCart} />}
+    <div className="chatWrapper d-flex flex-column">
+      <Chat messages={messages} replyMessage={replyMessage} />
+      <ChatMessageSend sendMessage={sendMessage} />
     </div>
   );
 }

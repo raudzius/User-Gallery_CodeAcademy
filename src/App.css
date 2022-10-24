@@ -2,16 +2,20 @@
   display: flex;
 }
 
-.space-btw {
-  justify-content: space-between;
-}
-
 .flex-column {
   flex-direction: column;
 }
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.space-btw {
+  justify-content: space-between;
+}
+
+.grow1 {
+  flex-grow: 1;
 }
 
 .ml-20 {
@@ -60,42 +64,10 @@
   border: 1px solid black;
 }
 
-.playerImg {
-  height: 100px;
-  width: 100px;
-}
-
-.dice {
-  background-image: url('https://ecdn.teacherspayteachers.com/thumbitem/Dice-and-Dominoes-Clipart-Graphics-FREE-1497374706/original-306749-3.jpg');
-  height: 100px;
-  width: 100px;
-}
-
-.card {
-  margin: 10px;
+.chatWrapper {
+  margin: 50px;
   padding: 10px;
-  width: 250px;
-  background-color: #f1f1f1;
-}
-
-.card img {
-  width: 100%;
-}
-
-.cart {
-  position: absolute;
-  left: 200px;
-  top: 100px;
-  width: 700px;
-  height: 500px;
-  background-color: #efefef;
-}
-
-.cart-item {
-  padding: 20px;
-  background-color: #efefef;
-}
-
-.cart-item img {
-  height: 100px;
+  width: 400px;
+  height: 600px;
+  border: 1px solid black;
 }
